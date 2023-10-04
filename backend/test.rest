@@ -1,0 +1,66 @@
+POST http://localhost:5000/user/sign-in
+Content-Type: application/json
+
+{
+    "name":"rex",
+    "email":"rex@gmail.com",
+    "password":"1212"
+}
+
+###
+POST http://localhost:5000/user/log-in
+Content-Type: application/json
+
+{
+    "email":"ash@gmail.com",
+    "password":"1212"
+}
+
+###
+
+GET http://localhost:5000/user/all-users
+
+###
+
+GET http://localhost:5000/user/getuser/6511612c6a4336630803142f
+
+###
+PUT http://localhost:5000/user/add-friend
+Content-Type: application/json
+
+{
+    "mainId":"651161236a4336630803142c",
+    "userId":"6511612c6a4336630803142f"
+}
+
+###
+PUT http://localhost:5000/user/remove-friend
+Content-Type: application/json
+
+{
+    "mainId":"651161236a4336630803142c",
+    "userId":"6511612c6a4336630803142f"
+}
+
+###
+
+POST http://localhost:5000/chat/get-create-chat
+Content-Type: application/json
+
+{
+    "mainId":"651161236a4336630803142c",
+    "userId":"6511612c6a4336630803142f"
+}
+
+###
+GET http://localhost:5000/chat/getAllChats/6511612c6a4336630803142f
+###
+
+POST http://localhost:5000/chat/create-groupchat
+Content-Type: application/json
+
+{
+    "mainUser":"651161236a4336630803142c",
+    "users":["6511612c6a4336630803142f"],
+    "title":"Paradise"
+}

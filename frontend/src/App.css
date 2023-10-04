@@ -1,0 +1,20 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Asap:ital,wght@1,300;1,700&family=Maven+Pro&family=Open+Sans&family=Outfit&family=Roboto:wght@300&family=Rubik:ital,wght@0,400;0,500;1,400&display=swap'); */
+
+.App {
+  height: 100vh;
+  min-height: 100vh;
+  width: 100vw;
+  max-width: 100vw;
+  /* font-family: 'Arial'; */
+}
+.scrollbarhidden::-webkit-scrollbar{
+  width: 1px;
+}
+
+.popup{
+  background-color: rgb(46, 141, 158);
+}
+
+.editbg{
+  background-color: rgba(0, 0, 0, 0.115);
+}
