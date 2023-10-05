@@ -55,7 +55,7 @@ const CreateGroup = () => {
       }
 
       const response = await axios.post(
-        "http://localhost:5000/chat/create-groupchat",
+        "https://chat-app-backend-aakesh44s-projects.vercel.app/chat/create-groupchat",
         {
           
           mainUser:mainUser?._id,

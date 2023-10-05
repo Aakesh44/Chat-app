@@ -17,7 +17,7 @@ const status = 'developement'
 dotenv.config()
 app.use(cors(
     {
-        origin:[],
+        origin:["chat-app-backend-amber-xi.vercel.app"],
         methods:["POST","GET","PUT","DELETE"],
         credentials: true
     }

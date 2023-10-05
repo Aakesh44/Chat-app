@@ -92,7 +92,7 @@ const ProfileEdit = ({setEditOpen}) => {
             };
 
             const response = await axios.put(
-                "http://localhost:5000/user/edit-user",
+                "https://chat-app-backend-aakesh44s-projects.vercel.app//user/edit-user",
                 {
                     userId:mainUser?._id,
                     name : name ? name : mainUser?.name,

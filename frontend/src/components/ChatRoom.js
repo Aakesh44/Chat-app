@@ -18,7 +18,7 @@ import { BeatLoader } from "react-spinners"
 import { io } from "socket.io-client"
 import { connect } from "mongoose"
 
-const ENDPOINT = "http://localhost:5000"
+const ENDPOINT = "chat-app-backend-amber-xi.vercel.app"
 
 let socket 
 let selectedChatCompare
@@ -119,7 +119,7 @@ const ChatRoom =() =>{
             };
 
             const response = await axios.put(
-                "http://localhost:5000/user/add-friend",
+                "https://chat-app-backend-aakesh44s-projects.vercel.app/user/add-friend",
                 {
                     userId:userId,
                     mainId:mainUser?._id
@@ -153,7 +153,7 @@ const ChatRoom =() =>{
                 }
             }
             const response = await axios.post(
-                `http://localhost:5000/chat/get-create-chat`,
+                `https://chat-app-backend-aakesh44s-projects.vercel.app/chat/get-create-chat`,
                 {
                     userId:userId,
                     mainId:mainUser?._id
@@ -184,7 +184,7 @@ const ChatRoom =() =>{
                 }
             }
             const response = await axios.get(
-                `http://localhost:5000/chat/getGroup/${userId}`,
+                `https://chat-app-backend-aakesh44s-projects.vercel.app/chat/getGroup/${userId}`,
                 config
             )
         
@@ -218,7 +218,7 @@ const ChatRoom =() =>{
                 }
             }
             const response = await axios.post(
-                `http://localhost:5000/message/send`,
+                `https://chat-app-backend-aakesh44s-projects.vercel.app/message/send`,
                 {
                     message:typedMsg, 
                     chatId:curChat?._id,
@@ -254,7 +254,7 @@ const ChatRoom =() =>{
             }
             // console.log(curChat?._id);
             const response = await axios.get(
-                `http://localhost:5000/message/fetch/${chatId}`,
+                `https://chat-app-backend-aakesh44s-projects.vercel.app/message/fetch/${chatId}`,
 
                 config
             )

@@ -12,7 +12,7 @@ const loginFun = createAsyncThunk('auth/login',async (userdata,{rejectWithValue}
 
     try{
 
-        const response =  await axios.post("http://localhost:5000/user/log-in",userdata)
+        const response =  await axios.post("https://chat-app-backend-aakesh44s-projects.vercel.app/user/log-in",userdata)
 
         console.log(response.data);
         if(response.data){
@@ -34,7 +34,7 @@ const signinFun = createAsyncThunk('auth/signin',async (userdata,{rejectWithValu
 
     try{
 
-        const response =  await axios.post("http://localhost:5000/user/sign-in",userdata)
+        const response =  await axios.post("https://chat-app-backend-aakesh44s-projects.vercel.app/user/sign-in",userdata)
 
         console.log(response.data);
         if(response.data){

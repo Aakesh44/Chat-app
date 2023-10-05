@@ -73,7 +73,7 @@ const Section2 = ({chat}) => {
       }
 
       const response = await axios.put(
-        "http://localhost:5000/chat/group-add",
+        "https://chat-app-backend-aakesh44s-projects.vercel.app/chat/group-add",
         {
         
           userIds:[...addUser],
@@ -104,7 +104,7 @@ const Section2 = ({chat}) => {
       }
 
       const response = await axios.put(
-        "http://localhost:5000/chat/group-remove",
+        "https://chat-app-backend-aakesh44s-projects.vercel.app/chat/group-remove",
         {
         
           userIds:[...kickUser],
@@ -134,7 +134,7 @@ const Section2 = ({chat}) => {
       }
 
       const response = await axios.put(
-        "http://localhost:5000/chat/rename",
+        "https://chat-app-backend-aakesh44s-projects.vercel.app/chat/rename",
         {
         
           chatName:chatNewName,
@@ -183,7 +183,7 @@ const Section2 = ({chat}) => {
       }
 
       const response = await axios.put(
-        "http://localhost:5000/chat/change-admin",
+        "https://chat-app-backend-aakesh44s-projects.vercel.app/chat/change-admin",
         {
           
           chatId:curChat?._id,
@@ -216,7 +216,7 @@ const Section2 = ({chat}) => {
       }
 
       const response = await axios.delete(
-        `http://localhost:5000/chat/delete-group/${curChat._id}`,
+        `https://chat-app-backend-aakesh44s-projects.vercel.app/chat/delete-group/${curChat._id}`,
         config)
       
         console.log(response.data);
@@ -242,7 +242,7 @@ const Section2 = ({chat}) => {
       }
 
       const response = await axios.put(
-        "http://localhost:5000/chat/group-remove",
+        "https://chat-app-backend-aakesh44s-projects.vercel.app/chat/group-remove",
         {
         
           userIds:[mainUser?._id],

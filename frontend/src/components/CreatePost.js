@@ -30,7 +30,7 @@ const CreatePost = () => {
             };
 
             const response = await axios.post(
-                "http://localhost:5000/post/create",
+                "https://chat-app-backend-aakesh44s-projects.vercel.app/post/create",
                 {
                     userId:mainUser?._id,
                     title:title.trim(),

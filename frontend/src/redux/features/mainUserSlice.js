@@ -15,7 +15,7 @@ const getMainUser = createAsyncThunk('user/getUser', async (userId,{rejectWithVa
     const TOKEN = JSON.parse(localStorage.getItem('chatUser') ?? '')?.token
     // console.log(TOKEN);
     try {
-        const response = await axios.get(`http://localhost:5000/user/getuser/${userId}`,{
+        const response = await axios.get(`https://chat-app-backend-aakesh44s-projects.vercel.app/user/getuser/${userId}`,{
             headers:{
             Authorization: `Bearer ${TOKEN}`
         }

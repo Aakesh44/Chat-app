@@ -6,7 +6,7 @@ const postCont = require('../controller/postCont')
 
 router.route('/create').post(auth,postCont.createPost)
 
-router.route('/all-posts').get(auth,postCont.getPosts)
+router.route('/all-posts').get(postCont.getPosts)
 
 router.route('/like/:id').put(auth,postCont.like) 
 
