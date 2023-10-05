@@ -45,6 +45,8 @@ const ChatRoom =() =>{
         socket.emit("setup", mainUser)
         socket.on( "connected", () => setSocketConnected(true))
 
+        console.log('leo das');
+
         socket.on('typing' ,()=>(setIsTyping(true)))
         socket.on('stop typing',()=>setIsTyping(false))
 
@@ -82,6 +84,8 @@ const ChatRoom =() =>{
                 console.log('jii');
             }
         }
+
+        console.log('njnjnjnjnjjnjnjjjjjjj');
 
         socket?.on("message received" , messageRecievedHand)
 

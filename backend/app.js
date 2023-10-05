@@ -2,7 +2,6 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const cors = require('cors')
-const path = require('path')
 const dotenv = require('dotenv')
 const msgRoute = require('./router/msgRoutes')
 const userRoute = require('./router/userRoutes')
@@ -15,13 +14,13 @@ dotenv.config()
 
 const allowedOrigins = ['https://chatly-rho.vercel.app'];
 const corsOptions = {
-  origin: (origin, callback) => {
-    if (allowedOrigins.includes(origin) || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+   origin:["*"], //(origin, callback) => {
+//     if (allowedOrigins.includes(origin) || !origin) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   }, 
   methods:['GET','POST','PUT','DELETE'],
   credentials: true, 
 };
@@ -35,9 +34,9 @@ app.use(express.json())
 async function main() {
 
     try {
-        let old ='mongodb://127.0.0.1:27017/chat'
-        const url = "mongodb+srv://aakeshviswanathan:rYLhmi73gzrwKCwp@cluster0.hrurtma.mongodb.net/?retryWrites=true&w=majority"
-        await mongoose.connect(url,{useNewUrlParser: true,useUnifiedTopology: true})
+        let local ='mongodb://127.0.0.1:27017/chat'
+        const AtlasDBurl = "mongodb+srv://aakeshviswanathan:rYLhmi73gzrwKCwp@cluster0.hrurtma.mongodb.net/?retryWrites=true&w=majority"
+        await mongoose.connect(AtlasDBurl,{useNewUrlParser: true,useUnifiedTopology: true})
         console.log('connected to db');
     } catch (error) {
         console.log(error);
