@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useRef, useState } from "react"
-import {BsEmojiSmile,BsThreeDotsVertical} from 'react-icons/bs'
-import {AiOutlinePaperClip,AiOutlineUserAdd,AiOutlineMessage,AiOutlineLoading3Quarters} from 'react-icons/ai'
+import { useEffect, useState } from "react"
+import {BsEmojiSmile} from 'react-icons/bs'
+import {AiOutlinePaperClip,AiOutlineUserAdd,AiOutlineLoading3Quarters} from 'react-icons/ai'
 import {RiSendPlaneFill} from 'react-icons/ri'
 import { fetchChats } from "../redux/features/chatSlice"
 import { getMainUser } from "../redux/features/mainUserSlice"
@@ -16,7 +16,6 @@ import MessageBox from "./MessageBox"
 import { BeatLoader } from "react-spinners"
 
 import { io } from "socket.io-client"
-import { connect } from "mongoose"
 
 const ENDPOINT = "chat-app-backend-amber-xi.vercel.app"
 
@@ -54,7 +53,7 @@ const ChatRoom =() =>{
                 socket.disconnect()
             }
         }
-    },[])
+    },[mainUser])
 
     useEffect(()=>{
         console.log('aiaiai');
@@ -279,7 +278,7 @@ const ChatRoom =() =>{
     useEffect(()=>{
         
         console.log('1st:',getChatCalled);
-        console.log(URL);
+        // console.log(URL);
         setCurChat([])
         setNewMsg("")
 
@@ -293,10 +292,10 @@ const ChatRoom =() =>{
             setGetChatCalled(true)
         }
 
-        console.log('2nd:',getChatCalled);
+        // console.log('2nd:',getChatCalled);
         setGetChatCalled(false)
-        console.log('last:',getChatCalled);
-    },[mainUser,userId])
+        // console.log('last:',getChatCalled);
+    },[mainUser,userId,chatType,mainUser?._id,notifications])
 
     const chatUser = !(curChat?.isGroupChat) && curChat?.users?.find(n=> n._id !== mainUser?._id)
     // console.log("chatUser" ,chatUser);
@@ -443,64 +442,3 @@ const ChatRoom =() =>{
 
 export default ChatRoom;
 
-{/* <>
-                <div className="w-4/5 mt-auto ml-auto flex items-end justify-end  h-fit bg-red-6 00 my-3 gap-2">
-                    <p className="m- auto text-xs font-mono">3:45</p>
-                    <h1 className=" rounded-br-none bg-gray-300 w-fit px-2  py-2 rounded-lg font-medium">hello 😍</h1>
-                </div>
-
-                <div className=" w-4/5  flex items-end justify-start h-fit bg-red-6000 my-3 gap-2">
-                    <img src="https://img.freepik.com/free-vector/isolated-young-handsome-man-different-poses-white-background-illustration_632498-859.jpg?size=626&ext=jpg&ga=GA1.1.935296291.1680001946&semt=ais" alt="" 
-                    className="h-8 w-8 rounded-full " />
-                    <h1 className=" m -auto rounded-bl-none bg-cyan-500 w-fit px-2  py-2 rounded-lg font-medium">1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos error eveniet amet dignissimos quibusdam a sapiente asperiores saepe aspernatur, perferendis optio iusto libero explicabo quos. Fuga repellendus ut quisquam magnam! 😍</h1>
-                    <p className="mr-auto text-xs font-mono">3:45</p>
-                </div>
-
-                <div className="w-4/5  ml-auto flex items-end justify-end h-fit bg-red-6 00 my-3 gap-2">
-                    <p className="m- auto text-xs font-mono">3:45</p>
-                    <h1 className=" rounded-br-none bg-gray-300 w-fit px-2  py-2 rounded-lg font-medium">2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem modi non iste iure  😍</h1>
-                </div>
-
-                <div className="w-4/5  flex items-end justify-start h-fit bg-red-6000 my-3 gap-2">
-                    <img src="https://img.freepik.com/free-vector/isolated-young-handsome-man-different-poses-white-background-illustration_632498-859.jpg?size=626&ext=jpg&ga=GA1.1.935296291.1680001946&semt=ais" alt="" 
-                    className="h-8 w-8 rounded-full " />
-                    <h1 className=" m -auto rounded-bl-none bg-cyan-500 w-fit px-2  py-2 rounded-lg font-medium relative">3 Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda quia quas omnis. Consequatur vero porro nisi ipsam laboriosam molestiae libero 😍</h1>
-                    <p className="mr-auto text-xs font-mono">3:45</p>
-
-                </div>
-                <div className="w-4/5  ml-auto flex items-end justify-end h-fit bg-red-6 00 my-3 gap-2">
-                    <p className="m- auto text-xs font-mono">3:45</p>
-                    <h1 className=" rounded-br-none bg-gray-300 w-fit px-2  py-2 rounded-lg font-medium">4 Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem modi non iste iure  😍</h1>
-                </div>
-
-                 <div className="w-4/5 flex items-end justify-start h-fit bg-red-6000 my-3 gap-2">
-                    <img src="https://img.freepik.com/free-vector/isolated-young-handsome-man-different-poses-white-background-illustration_632498-859.jpg?size=626&ext=jpg&ga=GA1.1.935296291.1680001946&semt=ais" alt="" 
-                    className="h-8 w-8 rounded-full " />
-                    <h1 className=" m -auto rounded-bl-none bg-cyan-500 w-fit px-2  py-2 rounded-lg font-medium relative">5 Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda quia quas omnis. Consequatur vero porro nisi ipsam laboriosam molestiae libero 😍</h1>
-                    <p className="mr-auto text-xs font-mono">3:45</p>
-
-                </div>
-                <div className="w-4/5 ml-auto flex items-end justify-end h-fit bg-red-6 00 my-3 gap-2">
-                    <p className="m- auto text-xs font-mono">3:45</p>
-                    <h1 className=" rounded-br-none bg-gray-300 w-fit px-2  py-2 rounded-lg font-medium">6 Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem modi non iste iure  😍</h1>
-                </div>
-
-                <div className="w-4/5 flex items-end justify-start h-fit bg-red-6000 my-3 gap-2">
-                    <img src="https://img.freepik.com/free-vector/isolated-young-handsome-man-different-poses-white-background-illustration_632498-859.jpg?size=626&ext=jpg&ga=GA1.1.935296291.1680001946&semt=ais" alt="" 
-                    className="h-8 w-8 rounded-full " />
-                    <h1 className=" m -auto rounded-bl-none bg-cyan-500 w-fit px-2  py-2 rounded-lg font-medium relative">7 Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda quia quas omnis. Consequatur vero porro nisi ipsam laboriosam molestiae libero 😍</h1>
-                    <p className="mr-auto text-xs font-mono">3:45</p>
-
-                </div>
-                <div className="w-4/5 ml-auto flex items-end justify-end h-fit bg-red-6 00 my-3 gap-2">
-                    <p className="m- auto text-xs font-mono">3:45</p>
-                    <h1 className=" rounded-br-none bg-gray-300 w-fit px-2  py-2 rounded-lg font-medium">8 Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem modi non iste iure  😍</h1>
-                </div>
-
-                <div className="w-4/5 flex items-end justify-start h-fit bg-red-6000 my-3 gap-2">
-                    <img src="https://img.freepik.com/free-vector/isolated-young-handsome-man-different-poses-white-background-illustration_632498-859.jpg?size=626&ext=jpg&ga=GA1.1.935296291.1680001946&semt=ais" alt="" 
-                    className="h-8 w-8 rounded-full " />
-                    <h1 className=" m -auto rounded-bl-none bg-cyan-500 w-fit px-2  py-2 rounded-lg font-medium relative">9 Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda quia quas omnis. Consequatur vero porro nisi ipsam laboriosam molestiae libero 😍</h1>
-                    <p className="mr-auto text-xs font-mono">3:45</p>
-
-                </div></> */}

@@ -269,7 +269,7 @@ const Section2 = ({chat}) => {
     setRemUser(curChat?.users.map(n=>({...n, check:false})))
     setchatNewName("")
     console.log('reload');
-  },[curChat])
+  },[curChat,Allusers,mainUser?._id])
 
   return (
 

@@ -31,4 +31,4 @@ const Section1 = ({option}) => {
   )
 }
 
-export default Section1
+export default Section1 

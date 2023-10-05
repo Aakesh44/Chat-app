@@ -31,7 +31,7 @@ function App() {
 
   useEffect(()=>{
 // console.log(USER);
-    if(USER?.token){
+    if(USER?._id){
       // console.log("token :", userToken);
       console.log('openingg');
       navigate('/')
@@ -46,7 +46,7 @@ function App() {
       SetOpen(true)
     }
 
-  },[USER?.token,userData.userData])
+  },[USER?._id,userData.userData])
 
   return (
     <main className="App">
