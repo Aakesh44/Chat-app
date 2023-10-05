@@ -11,17 +11,21 @@ const postRoute = require('./router/postRoutes')
 
 const errorHandler = require('./middleware/error')
 
-
-const status = 'developement'
-
 dotenv.config()
-app.use(cors(
-    {
 
-        origin:["*"],
-        methods:["POST","GET","PUT","DELETE"],
-        credentials: true
+const allowedOrigins = ['https://chatly-two.vercel.app'];
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
     }
+  },
+  credentials: true, 
+};
+app.use(cors(
+    corsOptions
 ))
 
 app.use(express.urlencoded({extended:true}))
@@ -40,28 +44,12 @@ async function main() {
 }
 main()
 
+app.get('/',(req,res)=>{res.send('server running on vercel')})
+
 app.use('/user',userRoute)
 app.use('/chat',chatRoute)
 app.use('/message',msgRoute)
 app.use('/post',postRoute)
-
-// ---------------------------------  DEPLOYMENT ---------------------------
-
-const _dirname1 = path.resolve()
-// const bb = require('../chatapp/build')
-
-if(status === 'Production'){
-    app.use(express.static(path.join(_dirname1,'../chatapp/build')))
-    app.get('*', (req,res)=>{
-        res.sendFile(path.resolve(_dirname1, "chatapp", "build" ,"index.html"))
-    })
-}
-else{
-    app.get('/',(req,res)=>{res.send('server running on 5000')})
-}
-
-// ---------------------------------  DEPLOYMENT ---------------------------
-
 
 app.use(errorHandler.notFound)
 app.use(errorHandler.errorHandler)
