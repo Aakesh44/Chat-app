@@ -99,7 +99,7 @@ const ChatRoom =() =>{
     const [emojiPopUp,setEmojiPopUp] = useState(false)
 
     const [loading,setLoading] = useState(false)
-
+    const [msgLoading,setMsgLoading] = useState(false)
     const location = useLocation()
     const URL = location.pathname.split('/')
     const chatType = URL[1]
@@ -206,6 +206,7 @@ const ChatRoom =() =>{
         e.preventDefault()
         let typedMsg = newMsg.trim()
         if(!typedMsg) return 
+        setMsgLoading(true)
         setNewMsg("")
         socket.emit('stop typing',curChat?._id)
         // console.log(newMsg);
@@ -230,7 +231,7 @@ const ChatRoom =() =>{
             setCurMsgs(prev=> [...prev, response.data])
             socket.emit('new message', response.data)
             // fetchMsgs(response.data?.chat?._id)
-
+            setMsgLoading(false)
 
 
         } catch (error) {
@@ -349,8 +350,8 @@ const ChatRoom =() =>{
             <header style={{backgroundColor:"#19A7CE",height:'80px'}} className=" h-16 mb-auto  flex items-center justify-start px-5 bg-cyan-300 rounded-t-lg">
                 
                 {!(curChat?.isGroupChat) &&  
-                <div className="h-10 w-10 rounded-full mr-5 overflow-hidden bg-cyan-600">
-                    <img src={!(curChat?.isGroupChat) &&  curChat?.users?.find(n=> n._id !== mainUser?._id)?.pimg} alt="" />
+                <div style={{backgroundImage:`url(${curChat?.users?.find(n=> n._id !== mainUser?._id)?.pimg})`}} className=" bg-cover bg-center h-10 w-10 rounded-full mr-5 overflow-hidden bg-cyan-600">
+                    {/* <img src={ curChat?.users?.find(n=> n._id !== mainUser?._id)?.pimg} alt="" /> */}
                 </div>}
 
                 {(curChat?.isGroupChat) &&
@@ -375,13 +376,13 @@ const ChatRoom =() =>{
                 {/* style={{minHeight:"82%",maxHeight:"82%"}} */}
                 <MessageBox messages={curMsgs}/>
 
-                {/* {loading && <div className=" absolute inset-0  flex items-center justify-center">
+                {loading && <div className=" absolute inset-0  flex items-center justify-center">
                     {<AiOutlineLoading3Quarters className=" animate-spin h-12 w-12 text-cyan-800"/>}
-                </div>} */}
+                </div>}
 
             </section>
 
-            {((mainUser?.friends?.some(n=>n._id === userId)) || (curChat?.isGroupChat) || loading) ? 
+            {((mainUser?.friends?.some(n=>n._id === userId)) || (curChat?.isGroupChat)) ? 
             <form onSubmit={(e)=>sendMsg(e)} style={{backgroundColor:"#",height:'80px'}} className=" relative h-16 w-full -ml-1 rounded-lg bg--500 shadow-md mt-auto flex items-center p- px-5 bg-white">
                 {/* {isTyping &&  */}
                 <BeatLoader 
@@ -391,6 +392,7 @@ const ChatRoom =() =>{
                     size={10}
                     aria-label="Loading Spinner"
                     data-testid="loader"/>
+                {msgLoading && <AiOutlineLoading3Quarters className=" absolute -top-10 right-8 animate-spin text-cyan-500"/>}
                 <textarea type="text" value={newMsg} onChange={(e)=>msgTyping(e)} style={{maxWidth:'66%'}} rows={1} className=" relative w-4/6 h-5/6  flex flex-wrap resize-none bg-green-6000 text-base font-semibold px-1 outline-1 outline-cyan-700 scrollbarhidden placeholder:absolute placeholder:top-1/3" placeholder="Write your message... "/>
 
                 <div className="flex items-center p-2 py-4  justify-between w-40 h-full ml-auto ">

@@ -20,10 +20,6 @@ const postSchema = mongoose.Schema({
         type:Number,
         default:0
     },
-    dislikes:{
-        type:Number,
-        default:0
-    },
     isSaved:{
         type:Boolean,
         default:false

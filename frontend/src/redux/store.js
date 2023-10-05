@@ -8,6 +8,8 @@ import userReducer from "./features/userSlice"
 
 import chatReducer from './features/chatSlice'
 
+import postReducer from './features/postSlice'
+
 import CGroupPop from "./features/CGroupPop"
 
 import notification from './features/notificationSlice'
@@ -19,6 +21,8 @@ export const store = configureStore({
         mainUser : mainUserReducer,
 
         usersList : userReducer,
+
+        postsList : postReducer,
 
         chatsList : chatReducer,
 

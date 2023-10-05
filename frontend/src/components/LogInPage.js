@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {AiOutlineGoogle,AiFillApple,AiFillFacebook} from 'react-icons/ai'
+import {AiOutlineGoogle,AiFillApple,AiFillFacebook,AiOutlineEye,AiOutlineEyeInvisible} from 'react-icons/ai'
 import {RiChatSmile3Line} from 'react-icons/ri'
 
 import * as yup from 'yup'
@@ -19,9 +19,12 @@ const LogInPage = () => {
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
 
+    const [showPassWord,setShowPassWord] = useState(false)
+
     const [loginEmail,setLogInEmail] = useState("")
     const [loginPassword,setLoginpassword] = useState("")
 
+    const [loginShowPassWord,setLoginShowPassWord] = useState(false)
 
     const [existError,setExistError] = useState(null)
     const [logError,setLogError] = useState(null)
@@ -110,22 +113,25 @@ const LogInPage = () => {
                     <div className=' w-11/12 mt-5 flex border-2 border-gray-300 rounded-md bg-transparent p-1 mx-auto h-10'>
                         <input 
                         {...register('name')}
-                        value={name} onChange={(e)=>setName(e.target.value.trim())} 
-                        type="text" className=' w-10/12 outline-none text-black placeholder:text-gray-500 text-sm font-semibold' placeholder='Enter your Name'/> <span>0</span>
+                        value={name} onChange={(e)=>setName(e.target.value)} 
+                        type="text" className=' w-full outline-none text-black placeholder:text-gray-500 text-sm font-semibold' placeholder='Enter your Name'/> 
                     </div>
     
                     <div className=' w-11/12 mt-5 flex border-2 border-gray-300 rounded-md bg-transparent p-1 mx-auto h-10'>
                         <input 
                         {...register('email')}
                         value={email} onChange={(e)=>setEmail(e.target.value.trim())} 
-                        type="text" className=' w-10/12 outline-none text-black placeholder:text-gray-500 text-sm font-semibold' placeholder='Enter Your Email'/> <span>0</span>
+                        type="text" className=' w-full outline-none text-black placeholder:text-gray-500 text-sm font-semibold' placeholder='Enter Your Email'/> 
                     </div>
     
                     <div className=' w-11/12 flex mt-5 border-2 border-gray-300 rounded-md bg-transparent p-1 mx-auto h-10'>
                         <input 
                         {...register('password')}
                         value={password} onChange={(e)=>setPassword(e.target.value.trim())} 
-                        type="text" className=' w-10/12 outline-none text-black placeholder:text-gray-500 text-sm font-semibold' placeholder='Passcode'/> <span className=' text-xs font-bold my-auto'>Hide</span>
+                        type={ showPassWord ? "text" : "password"} className=' w-10/12 outline-none text-black placeholder:text-gray-500 text-sm font-semibold' placeholder='Passcode'/> 
+                        <span onClick={()=>setShowPassWord(!showPassWord)} className='my-auto cursor-pointer'>
+                            {showPassWord ? <AiOutlineEye className='h-6 w-6'/> : <AiOutlineEyeInvisible className='h-6 w-6'/>}
+                        </span>
                     </div>
     
                     <h1 className=' mt-3 text-xs font-semibold px-4'>Having trible in sign up?</h1>
@@ -153,14 +159,17 @@ const LogInPage = () => {
                         <input 
                         {...register('loginEmail')}
                         value={loginEmail} onChange={(e)=>setLogInEmail(e.target.value.trim())} 
-                        type="text" className=' w-10/12 outline-none text-black placeholder:text-gray-500 text-sm font-semibold' placeholder='Enter Your Email'/> <span>0</span>
+                        type="text" className=' w-10/12 outline-none text-black placeholder:text-gray-500 text-sm font-semibold' placeholder='Enter Your Email'/>
                     </div>
 
                     <div className=' w-11/12 flex mt-5 border-2 border-gray-300 rounded-md bg-transparent p-1 mx-auto h-10'>
                         <input 
                         {...register('loginPassword')}
                         value={loginPassword} onChange={(e)=>setLoginpassword(e.target.value.trim())} 
-                        type="text" className=' w-10/12 outline-none text-black placeholder:text-gray-500 text-sm font-semibold' placeholder='Passcode'/> <span className=' text-xs font-bold my-auto'>Hide</span>
+                        type={ loginShowPassWord ? "text" : "password"}className=' w-10/12 outline-none text-black placeholder:text-gray-500 text-sm font-semibold' placeholder='Passcode'/> 
+                        <span onClick={()=>setLoginShowPassWord(!loginShowPassWord)} className=' my-auto cursor-pointer'>
+                            {loginShowPassWord ? <AiOutlineEye className='h-6 w-6'/> : <AiOutlineEyeInvisible className='h-6 w-6'/>}
+                        </span>
                     </div>
 
                     <h1 className=' mt-3 text-xs font-semibold px-4'>Having trible in Sign in?</h1>

@@ -7,6 +7,7 @@ import {useSelector,useDispatch} from 'react-redux'
 import {change} from '../redux/features/CGroupPop'
 import { Link ,useNavigate} from 'react-router-dom'
 import ProfileEdit from './ProfileEdit'
+import CreatePost from './CreatePost'
 
 const Profile = (chat) => {
 
@@ -119,8 +120,7 @@ useEffect(()=>{
           </div>
 
           <div className=' w-1/3 h-full p-1'>
-            <button style={{backgroundColor:'#F6F1F1'}} className='w-full h-full rounded-md bg-cyan-300 shadow-md'>
-              <h1 className=' text-base font-bold'>100</h1>
+            <button onClick={()=>setOption("posts")} style={{backgroundColor:option === "posts" ?'#146C94':'#F6F1F1',color:option === "posts" && '#F6F1F1'}} className='w-full h-full transition rounded-md bg-cyan-300 shadow-md'>
               <h2 className=' text-xs font-semibold'>Posts</h2>
             </button>
           </div>
@@ -160,7 +160,7 @@ useEffect(()=>{
 
         </section>:
 
-        option === "chats" &&
+        option === "chats" ?
         <section style={{height:"62%",backgroundColor:'#F6F1F1'}} className=' w-full h-full pb- bg-red-300 rounded-lg overflow-hidden'>
         
           <header style={{color:'#'}} className=' p-2 px-3 flex  items-center justify-between text-lg font-bold text-white'>
@@ -213,7 +213,10 @@ useEffect(()=>{
             )):<div className='w-full h-56 flex items-center justify-center'> <h1>-- no chats --</h1></div>}
 
           </section>
-        </section>
+        </section>:
+
+        option === 'posts' &&
+        <CreatePost/>
 }
       </section>
 

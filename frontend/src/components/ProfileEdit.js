@@ -7,7 +7,7 @@ import axios from 'axios'
 
 const ProfileEdit = ({setEditOpen}) => {
     // dispatch(getMainUser(USER?._id))
-    const token = JSON.parse(localStorage.getItem('chatUser') ?? '')?.token
+    const token = JSON.parse(localStorage.getItem('chatUser'))?.token
     const dispatch = useDispatch()
     const mainUser = useSelector(state=>state.mainUser.mainUser)
 

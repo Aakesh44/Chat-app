@@ -72,7 +72,7 @@ const ChatList = () => {
                         <h1 className=' text-base font-semibold truncate'>{(chat?.isGroupChat) ? chat.title : chat?.users?.find(n=> n._id !== mainUser?._id)?.name}</h1>
                         <h2 style={{fontSize:'10px'}} className=' text-xs font-semibold truncate'> 
                           <span style={{fontSize:'11px'}} className=' font-bold'>
-                            {(chat?.isGroupChat) && ( chat?.lastMsg?.sender?._id === mainUser?._id ? 'you'+ " : " : chat?.lastMsg?.sender?.name + " : " )}
+                            {( (chat?.isGroupChat) && (chat?.lastMsg) ) && ( chat?.lastMsg?.sender?._id === mainUser?._id ? 'you'+ " : " : chat?.lastMsg?.sender?.name + " : " )}
                           </span>
                           
                           {chat?.lastMsg?.content}

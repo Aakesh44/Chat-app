@@ -12,17 +12,26 @@ const postRoute = require('./router/postRoutes')
 const errorHandler = require('./middleware/error')
 
 
-const status = 'Production'
+const status = 'developement'
 
 dotenv.config()
-app.use(cors())
+app.use(cors(
+    {
+        origin:[],
+        methods:["POST","GET","PUT","DELETE"],
+        credentials: true
+    }
+))
+
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 
 async function main() {
 
     try {
-        await mongoose.connect('mongodb://127.0.0.1:27017/chat')
+        let old ='mongodb://127.0.0.1:27017/chat'
+        const url = "mongodb+srv://aakeshviswanathan:rYLhmi73gzrwKCwp@cluster0.hrurtma.mongodb.net/?retryWrites=true&w=majority"
+        await mongoose.connect(url,{useNewUrlParser: true,useUnifiedTopology: true})
         console.log('connected to db');
     } catch (error) {
         console.log(error);

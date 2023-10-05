@@ -37,7 +37,7 @@ const UserList = () => {
                         <img src={user.pimg} alt="" className=' w-14 aspect-square rounded-full bg-cyan-500'/>
                         <article className='mr-auto pl-1'>
                             <h1 className=' text-base font-semibold'>{user.name}</h1>
-                            <h2 className=' text-sm font-semibold'>{user.title || 'user'}</h2>
+                            <h2 className=' text-xs font-semibold'>{user.title || 'user'}</h2>
                         </article>
                     </aside>
                     <aside className={` w-2/12  ${mainUser?.friends.some(n=>n._id === user?._id) ? 'bg-white' : 'bg-white'}   h-full flex items-center justify-center`}>

@@ -51,24 +51,17 @@ const Profile = ({chatUser}) => {
 
         <section style={{height:"8%",backgroundColor:'#000000'}} className=' w-full h-1 6 bg-cya n-400 flex items-center justify-evenly'>
 
-          <div className=' w-1/3 h-full p-1'>
+          <div className=' w-1/2 h-full p-1'>
 
             <button onClick={()=>setOption("friends")} style={{color: '#F6F1F1'}} className='w-full h-full transition rounded-md bg-green-500 shadow-md'>
               <h2 className=' text-xs font-semibold'>Friends</h2>
             </button>
           </div>
 
-          <div className=' w-1/3 h-full p-1'>
+          <div className=' w-1/2 h-full p-1'>
             <button onClick={()=>setOption("friends")} style={{backgroundColor:option === "friends" ?'#146C94':'#F6F1F1',color:option === "friends" && '#F6F1F1'}} className='w-full h-full transition rounded-md bg-cyan-300 shadow-md'>
               <h1 className=' text-base font-bold'>{chatUser?.friends?.length}</h1>
               <h2 className=' text-xs font-semibold'>Friends</h2>
-            </button>
-          </div>
-
-          <div className=' w-1/3 h-full p-1'>
-            <button style={{backgroundColor:'#F6F1F1'}} className='w-full h-full rounded-md bg-cyan-300 shadow-md'>
-              <h1 className=' text-base font-bold'>100</h1>
-              <h2 className=' text-xs font-semibold'>Posts</h2>
             </button>
           </div>
           
