@@ -16,7 +16,6 @@ import MessageBox from "./MessageBox"
 import { BeatLoader } from "react-spinners"
 
 import { io } from "socket.io-client"
-import { connect } from "mongoose"
 
 const ENDPOINT = "chat-app-backend-amber-xi.vercel.app"
 
