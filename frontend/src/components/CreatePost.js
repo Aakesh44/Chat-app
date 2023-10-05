@@ -30,7 +30,7 @@ const CreatePost = () => {
             };
 
             const response = await axios.post(
-                "https://chat-app-backend-aakesh44s-projects.vercel.app/post/create",
+                "https://chatly-server.vercel.app/post/create",
                 {
                     userId:mainUser?._id,
                     title:title.trim(),

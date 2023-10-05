@@ -118,7 +118,7 @@ const ChatRoom =() =>{
             };
 
             const response = await axios.put(
-                "https://chat-app-backend-aakesh44s-projects.vercel.app/user/add-friend",
+                "https://chatly-server.vercel.app/user/add-friend",
                 {
                     userId:userId,
                     mainId:mainUser?._id
@@ -152,7 +152,7 @@ const ChatRoom =() =>{
                 }
             }
             const response = await axios.post(
-                `https://chat-app-backend-aakesh44s-projects.vercel.app/chat/get-create-chat`,
+                `https://chatly-server.vercel.app/chat/get-create-chat`,
                 {
                     userId:userId,
                     mainId:mainUser?._id
@@ -183,7 +183,7 @@ const ChatRoom =() =>{
                 }
             }
             const response = await axios.get(
-                `https://chat-app-backend-aakesh44s-projects.vercel.app/chat/getGroup/${userId}`,
+                `https://chatly-server.vercel.app/chat/getGroup/${userId}`,
                 config
             )
         
@@ -217,7 +217,7 @@ const ChatRoom =() =>{
                 }
             }
             const response = await axios.post(
-                `https://chat-app-backend-aakesh44s-projects.vercel.app/message/send`,
+                `https://chatly-server.vercel.app/message/send`,
                 {
                     message:typedMsg, 
                     chatId:curChat?._id,
@@ -253,7 +253,7 @@ const ChatRoom =() =>{
             }
             // console.log(curChat?._id);
             const response = await axios.get(
-                `https://chat-app-backend-aakesh44s-projects.vercel.app/message/fetch/${chatId}`,
+                `https://chatly-server.vercel.app/message/fetch/${chatId}`,
 
                 config
             )

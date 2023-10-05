@@ -17,7 +17,8 @@ const status = 'developement'
 dotenv.config()
 app.use(cors(
     {
-        origin:["https://chatly-two.vercel.app"],
+
+        origin:["*"],
         methods:["POST","GET","PUT","DELETE"],
         credentials: true
     }
