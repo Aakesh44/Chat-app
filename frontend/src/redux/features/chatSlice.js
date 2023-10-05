@@ -15,7 +15,7 @@ const fetchChats = createAsyncThunk("chat.fetchChat", async (mainId)=>{
     // console.log(TOKEN);
     try {
         // console.log('mainId :',mainId);
-        const response =await axios.get(`https://chat-app-backend-aakesh44s-projects.vercel.app/chat/getAllChats/${mainId}`,{
+        const response =await axios.get(`https://chatly-server.vercel.app/chat/getAllChats/${mainId}`,{
             headers:{
                 Authorization: `Bearer ${TOKEN}`
             }

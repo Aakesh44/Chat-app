@@ -13,7 +13,7 @@ const fetchPosts = createAsyncThunk('posts/fetchposts' , async () =>{
 
     try {
     
-    const response =  await axios.get("https://chat-app-backend-aakesh44s-projects.vercel.app/post/all-posts",{
+    const response =  await axios.get("https://chatly-server.vercel.app/post/all-posts",{
         headers:{
             Authorization: `Bearer ${TOKEN}`
         }

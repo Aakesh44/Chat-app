@@ -17,7 +17,7 @@ import { BeatLoader } from "react-spinners"
 
 import { io } from "socket.io-client"
 
-const ENDPOINT = "chat-app-backend-amber-xi.vercel.app"
+const ENDPOINT = "https://chatly-server.vercel.app"
 
 let socket 
 let selectedChatCompare
