@@ -13,7 +13,7 @@ const errorHandler = require('./middleware/error')
 
 dotenv.config()
 
-const allowedOrigins = ['https://chatly-two.vercel.app','https://chatly-rho.vercel.app'];
+const allowedOrigins = ['https://chatly-rho.vercel.app'];
 const corsOptions = {
   origin: (origin, callback) => {
     if (allowedOrigins.includes(origin) || !origin) {
@@ -22,6 +22,7 @@ const corsOptions = {
       callback(new Error('Not allowed by CORS'));
     }
   },
+  methods:['GET','POST','PUT','DELETE'],
   credentials: true, 
 };
 app.use(cors(
