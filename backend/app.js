@@ -95,6 +95,11 @@ io.on("connection", (socket) => {
         })
     })
 
+    socket.on('disconnect', () => {
+        console.log('User disconnected');
+        // Perform any necessary cleanup or handling here
+    });
+
 })
 
     // socket.off("setup", (userData)=>{
