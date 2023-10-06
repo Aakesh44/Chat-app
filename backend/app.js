@@ -12,21 +12,20 @@ const errorHandler = require('./middleware/error')
 
 dotenv.config()
 
-const allowedOrigins = ['https://chatly-rho.vercel.app'];
+const whitelist = ['https://chatly-rho.vercel.app'];
 const corsOptions = {
-   origin:["*"], //(origin, callback) => {
-//     if (allowedOrigins.includes(origin) || !origin) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error('Not allowed by CORS'));
-//     }
-//   }, 
-  methods:['GET','POST','PUT','DELETE'],
+  origin: (origin, callback) => {
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+//   methods:['GET','POST','PUT','DELETE'],
+
   credentials: true, 
 };
-app.use(cors(
-    corsOptions
-))
+app.use(cors(corsOptions))
 
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
