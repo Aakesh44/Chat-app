@@ -12,7 +12,7 @@ const errorHandler = require('./middleware/error')
 
 dotenv.config()
 
-const whitelist = 'https://chatly-rho.vercel.app'
+const whitelist = 'https://chatly-rho.vercel.app/'
 const corsOptions = {
   origin: (origin, callback) => {
     if (origin !== whitelist || !origin) {
@@ -59,7 +59,7 @@ const server = app.listen(PORT,()=>{console.log(`your app is running on ${PORT}`
 const io = require('socket.io')(server,{
     pingTimeout: 60000,
     cors: {
-        origin:'https://chatly-rho.vercel.app',
+        origin:'*',
     }
 })
 
