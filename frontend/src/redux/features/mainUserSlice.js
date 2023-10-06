@@ -27,7 +27,7 @@ const getMainUser = createAsyncThunk('user/getUser', async (userId,{rejectWithVa
         return response.data
 
     } catch (error) {
-        console.log(error);
+        console.error(error);
 
         return rejectWithValue(error.response?.data.error)
     }
