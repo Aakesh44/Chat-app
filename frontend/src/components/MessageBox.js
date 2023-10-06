@@ -44,11 +44,6 @@ const MessageBox = ({messages}) => {
             
             {messages && messages.map((m,i)=>(
 
-                // <div className="w-4/5 mt-auto ml-auto flex items-end justify-end  h-fit bg-red-6 00 my-3 gap-2">
-                //     <p className="m- auto text-xs font-mono">3:45</p>
-                //     <h1 className=" rounded-br-none bg-gray-300 w-fit px-2  py-2 rounded-lg font-medium">hello 😍</h1>
-                // </div>
-
                 <div key={i} 
                 style={{
                     marginTop:i === 0 && "auto" ,

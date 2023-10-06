@@ -3,6 +3,7 @@ const app = express()
 const mongoose = require('mongoose')
 const cors = require('cors')
 const dotenv = require('dotenv')
+const socketIo = require('socket.io')
 const msgRoute = require('./router/msgRoutes')
 const userRoute = require('./router/userRoutes')
 const chatRoute = require('./router/chatRoutes')
@@ -12,10 +13,10 @@ const errorHandler = require('./middleware/error')
 
 dotenv.config()
 
-const whitelist = 'https://chatly-rho.vercel.app/'
+const whitelist = ['https://chatly-rho.vercel.app']
 const corsOptions = {
   origin: (origin, callback) => {
-    if (origin !== whitelist || !origin) {
+    if (whitelist.includes(origin) || !origin) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
@@ -56,12 +57,7 @@ app.use(errorHandler.errorHandler)
 const PORT = process.env.PORT || 5000
 const server = app.listen(PORT,()=>{console.log(`your app is running on ${PORT}`)})
 
-const io = require('socket.io')(server,{
-    pingTimeout: 60000,
-    cors: {
-        origin:'*',
-    }
-})
+const io = socketIo(server)
 
 io.on("connection", (socket) => {
 
@@ -99,8 +95,16 @@ io.on("connection", (socket) => {
         })
     })
 
-    socket.off("setup", ()=>{
-        console.log('user disconnected');
-        socket.leave(userData._id)
-    })
 })
+
+    // socket.off("setup", (userData)=>{
+    //     console.log('user disconnected');
+    //     socket.leave(userData._id)
+    // })
+
+// (server,{
+//     pingTimeout: 60000,
+//     cors: {
+//         origin:'*',
+//     }
+// })
