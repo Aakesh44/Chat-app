@@ -28,7 +28,7 @@ dotenv.config()
 // };
 // app.use(cors(corsOptions))
 
-const whitelist = ['https://chatly-rho.vercel.app/'];
+const whitelist = ['https://chatly-rho.vercel.app'];
 const corsOptions = {
   origin: (origin, callback) => {
     if (whitelist.includes(origin) || !origin) {
@@ -72,7 +72,12 @@ app.use(errorHandler.errorHandler)
 const PORT = process.env.PORT || 5000
 const server = app.listen(PORT,()=>{console.log(`your app is running on ${PORT}`)})
 
-const io = socketIo(server)
+const io = socketIo(server,{
+    pingTimeout: 60000,
+    cors: {
+        origin: '*'
+    }
+})
 
 io.on("connection", (socket) => {
 
