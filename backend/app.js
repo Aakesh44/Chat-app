@@ -15,7 +15,7 @@ dotenv.config()
 const whitelist = 'https://chatly-rho.vercel.app'
 const corsOptions = {
   origin: (origin, callback) => {
-    if (origin === whitelist || !origin) {
+    if (origin !== whitelist || !origin) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
