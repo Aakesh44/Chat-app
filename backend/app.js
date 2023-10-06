@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const dotenv = require('dotenv')
 const socketIo = require('socket.io')
+const { Server } = require('socket.io')
 const msgRoute = require('./router/msgRoutes')
 const userRoute = require('./router/userRoutes')
 const chatRoute = require('./router/chatRoutes')
@@ -72,10 +73,12 @@ app.use(errorHandler.errorHandler)
 const PORT = process.env.PORT || 5000
 const server = app.listen(PORT,()=>{console.log(`your app is running on ${PORT}`)})
 
-const io = require('socket.io')(server, {
+
+const io = new Server(server, {
     // pingTimeout: 60000,
     cors: {
-        origin: "*"
+        origin: "*",
+        methods: ['GET', 'POST', 'PUT', 'DELETE']
     }
 })
 
