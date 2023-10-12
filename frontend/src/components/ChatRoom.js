@@ -15,7 +15,7 @@ import MessageBox from "./MessageBox"
 
 import { BeatLoader } from "react-spinners"
 
-import io from "socket.io-client"
+import {io} from "socket.io-client"
 
 const ENDPOINT = "https://chatly-server.vercel.app"
 
@@ -271,6 +271,7 @@ const ChatRoom =() =>{
         }
 
     },[selectedChatCompare])
+    
 
     useEffect(()=>{
         
