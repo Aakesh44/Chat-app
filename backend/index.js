@@ -60,7 +60,8 @@ const io = require("socket.io")(httpServer,{
         origin: "https://chatly-rho.vercel.app",
         methods: ['GET','POST'],
         credentials: true
-    }
+    },
+    transports: ['websocket']
 })
 
 

@@ -218,7 +218,7 @@ const ChatRoom =() =>{
     }
 
     useEffect(()=>{
-        socket = io(ENDPOINT, { transports: ['websocket'] })
+        socket = io(ENDPOINT)
         socket.emit("setup", mainUser)
         socket.on( "connect", () =>{setSocketConnected(true);console.log('socket connect')})
 
