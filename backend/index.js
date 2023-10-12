@@ -1,10 +1,13 @@
 const express = require('express')
 const app = express()
+const socketIo = require('socket.io')
+
+const httpServer = require('http').createServer(app)
+
+
 const mongoose = require('mongoose')
 const cors = require('cors')
 const dotenv = require('dotenv')
-const socketIo = require('socket.io')
-const { Server } = require('socket.io')
 const msgRoute = require('./router/msgRoutes')
 const userRoute = require('./router/userRoutes')
 const chatRoute = require('./router/chatRoutes')
@@ -50,12 +53,15 @@ app.use('/post',postRoute)
 app.use(errorHandler.notFound)
 app.use(errorHandler.errorHandler)
 
-const http = require('http').Server(app)
-
 const PORT = process.env.PORT || 5000
 
-
-const io = require('socket.io')(http)
+const io = require("socket.io")(httpServer,{
+    cors: {
+        origin: "https://chatly-rho.vercel.app",
+        methods: ['GET','POST'],
+        credentials: true
+    }
+})
 
 
 io.on("connection", (socket) => {
@@ -101,11 +107,7 @@ io.on("connection", (socket) => {
 })
 
 
-http.listen(PORT,()=>{console.log(`your app is running on ${PORT}`)})
-
-
-
-
+httpServer.listen(PORT,()=>{console.log(`your app is running on ${PORT}`)})
 
     // socket.off("setup", (userData)=>{
     //     console.log('user disconnected');
