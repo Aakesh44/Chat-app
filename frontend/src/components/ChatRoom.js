@@ -22,8 +22,6 @@ const ENDPOINT = "https://chatly-server.vercel.app"
 let socket 
 let selectedChatCompare
 
-setup
-
 const ChatRoom =() =>{
 
     const mainUser= useSelector(state=> state.mainUser.mainUser)
