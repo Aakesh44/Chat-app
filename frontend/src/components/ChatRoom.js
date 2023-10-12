@@ -20,7 +20,7 @@ import {io} from "socket.io-client"
 const ENDPOINT = "https://chatly-server.vercel.app"
 
 let socket 
-let selectedChatCompare
+let selectedChatCompare = null
 
 const ChatRoom =() =>{
 
