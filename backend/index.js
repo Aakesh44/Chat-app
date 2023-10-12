@@ -57,7 +57,7 @@ const server = app.listen(PORT,()=>{console.log(`your app is running on ${PORT}`
 const io = new Server(server, {
     pingTimeout: 60000,
     cors: {
-        origin: "*",
+        origin: "https://chatly-rho.vercel.app/",
         // methods: ['GET', 'POST', 'PUT', 'DELETE'],
         // credentials: true
     }
