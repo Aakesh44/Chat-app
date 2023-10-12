@@ -276,7 +276,7 @@ const ChatRoom =() =>{
         
         console.log('1st:',getChatCalled);
         // console.log(URL);
-        setCurChat([])
+        setCurChat(prev=>prev = [])
         setNewMsg("")
 
         if(mainUser?.friends.some(n=>n._id === userId) && chatType === 'chat'){
