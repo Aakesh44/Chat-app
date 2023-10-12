@@ -17,7 +17,7 @@ import { BeatLoader } from "react-spinners"
 
 import io from "socket.io-client"
 
-const ENDPOINT = "https://chatly-server.vercel.app/"
+const ENDPOINT = "https://chatly-server.vercel.app"
 
 let socket 
 let selectedChatCompare
@@ -37,64 +37,6 @@ const ChatRoom =() =>{
     const [isTyping,setIsTyping] = useState(false)
 
     const [getChatCalled,setGetChatCalled] = useState(false)
-
-    useEffect(()=>{
-        socket = io(ENDPOINT)
-        socket.emit("setup", mainUser)
-        socket.on( "connected", () =>{setSocketConnected(true);console.log('socket connect');})
-
-        console.log('leo das');
-
-        socket.on('typing' ,()=>(setIsTyping(true)))
-        socket.on('stop typing',()=>setIsTyping(false))
-
-        return () =>{
-            if(socket){
-                socket.disconnect()
-            }
-        }
-    },[mainUser])
-
-    useEffect(()=>{
-        console.log('aiaiai');
-        if(curChat?._id) {
-            console.log('kiki');
-            fetchMsgs(curChat?._id)
-            selectedChatCompare = curChat 
-        }
-    },[curChat])
-    
-    useEffect(()=>{
-
-        const messageReceived = (newMessageReceived) =>{
-            console.log('bibibi');
-            if(!selectedChatCompare || selectedChatCompare._id !== newMessageReceived.chat._id){
-            console.log('notiiii');
-                if(!notifications.includes(newMessageReceived)){
-                    dispatch(setNotifications([newMessageReceived,...notifications]))
-                    dispatch(fetchChats(mainUser?._id))
-                }
-            }
-            else{
-                console.log(newMessageReceived.chat.title || 'noo');
-                setCurMsgs(prev=> [...prev , newMessageReceived])
-                dispatch(fetchChats(mainUser?._id))
-                console.log('jii');
-            }
-        }
-
-        console.log('njnjnjnjnjjnjnjjjjjjj');
-
-        socket?.on("message received" , messageReceived)
-
-        return () =>{
-            socket?.off("message received", messageReceived)
-        }
-
-    },[selectedChatCompare])
-
-
-
 
     const emojis = ["😀","😁","😂","😃","🤣","😄","😎","😋","😊","😉","😍","🤩","😆","😘","🤔","😶‍🌫️","😹","🙀","🤗","🤐","🤨","😏","😒","😓","😔","😕","😖","😗","😘","😙","😚","😛","😜","😝","🤑","🤓","🤗","😺","😸","😻"];
     const [emojiPopUp,setEmojiPopUp] = useState(false)
@@ -275,7 +217,60 @@ const ChatRoom =() =>{
         
     }
 
+    useEffect(()=>{
+        socket = io(ENDPOINT)
+        socket.emit("setup", mainUser)
+        socket.on( "connected", () =>{setSocketConnected(true);console.log('socket connect');})
 
+        console.log('leo das');
+
+        socket.on('typing' ,()=>(setIsTyping(true)))
+        socket.on('stop typing',()=>setIsTyping(false))
+
+        return () =>{
+            if(socket){
+                socket.disconnect()
+            }
+        }
+    },[mainUser])
+
+    useEffect(()=>{
+        console.log('aiaiai');
+        if(curChat?._id) {
+            console.log('kiki');
+            fetchMsgs(curChat?._id)
+            selectedChatCompare = curChat 
+        }
+    },[curChat])
+    
+    useEffect(()=>{
+
+        const messageReceived = (newMessageReceived) =>{
+            console.log('bibibi');
+            if(!selectedChatCompare || selectedChatCompare._id !== newMessageReceived.chat._id){
+            console.log('notiiii');
+                if(!notifications.includes(newMessageReceived)){
+                    dispatch(setNotifications([newMessageReceived,...notifications]))
+                    dispatch(fetchChats(mainUser?._id))
+                }
+            }
+            else{
+                console.log(newMessageReceived.chat.title || 'noo');
+                setCurMsgs(prev=> [...prev , newMessageReceived])
+                dispatch(fetchChats(mainUser?._id))
+                console.log('jii');
+            }
+        }
+
+        console.log('njnjnjnjnjjnjnjjjjjjj');
+
+        socket?.on("message received" , messageReceived)
+
+        return () =>{
+            socket?.off("message received", messageReceived)
+        }
+
+    },[selectedChatCompare])
 
     useEffect(()=>{
         
