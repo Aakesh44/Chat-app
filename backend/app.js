@@ -29,19 +29,25 @@ dotenv.config()
 // };
 // app.use(cors(corsOptions))
 
-const whitelist = ['https://chatly-rho.vercel.app'];
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (whitelist.includes(origin) || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
+// const whitelist = ['https://chatly-rho.vercel.app'];
+// const corsOptions = {
+//   origin: (origin, callback) => {
+//     if (whitelist.includes(origin) || !origin) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   },
+//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//   credentials: true,
+// };
+app.use(cors(
+    {
+        origin:"https://chatly-rho.vercel.app",
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
+        credentials: true,                
     }
-  },
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true,
-};
-app.use(cors());
+));
 
 
 app.use(express.urlencoded({extended:true}))
