@@ -50,17 +50,13 @@ app.use('/post',postRoute)
 app.use(errorHandler.notFound)
 app.use(errorHandler.errorHandler)
 
+const http = require('http').Server(app)
+
 const PORT = process.env.PORT || 5000
-const server = app.listen(PORT,()=>{console.log(`your app is running on ${PORT}`)})
 
 
-const io = new Server(server)
-//      {
-//     pingTimeout: 60000,
-//     cors: {
-//         origin: "https://chatly-rho.vercel.app",
-//     }
-// })
+const io = require('socket.io')(http)
+
 
 io.on("connection", (socket) => {
 
@@ -98,11 +94,18 @@ io.on("connection", (socket) => {
         })
     })
 
-    // socket.on('disconnect', () => {
-    //     console.log('User disconnected');
-    // });
+    socket.on('disconnect', () => {
+        console.log('User disconnected');
+    });
 
 })
+
+
+http.listen(PORT,()=>{console.log(`your app is running on ${PORT}`)})
+
+
+
+
 
     // socket.off("setup", (userData)=>{
     //     console.log('user disconnected');

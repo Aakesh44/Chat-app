@@ -220,7 +220,7 @@ const ChatRoom =() =>{
     useEffect(()=>{
         socket = io(ENDPOINT)
         socket.emit("setup", mainUser)
-        socket.on( "connected", () =>{setSocketConnected(true);console.log('socket connect');})
+        socket.on( "connect", () =>{setSocketConnected(true);console.log('socket connect');console.log(socket._id)})
 
         console.log('leo das');
 
@@ -271,7 +271,7 @@ const ChatRoom =() =>{
         }
 
     },[selectedChatCompare])
-    
+
 
     useEffect(()=>{
         
