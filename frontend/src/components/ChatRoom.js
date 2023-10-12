@@ -15,9 +15,9 @@ import MessageBox from "./MessageBox"
 
 import { BeatLoader } from "react-spinners"
 
-import { io } from "socket.io-client"
+import io from "socket.io-client"
 
-const ENDPOINT = "https://chatly-server.vercel.app"
+const ENDPOINT = "https://chatly-server.vercel.app/"
 
 let socket 
 let selectedChatCompare
@@ -41,7 +41,7 @@ const ChatRoom =() =>{
     useEffect(()=>{
         socket = io(ENDPOINT)
         socket.emit("setup", mainUser)
-        socket.on( "connected", () => setSocketConnected(true))
+        socket.on( "connected", () =>{setSocketConnected(true);console.log('socket connect');})
 
         console.log('leo das');
 

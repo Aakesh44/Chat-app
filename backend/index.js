@@ -55,11 +55,11 @@ const server = app.listen(PORT,()=>{console.log(`your app is running on ${PORT}`
 
 
 const io = new Server(server, {
-    // pingTimeout: 60000,
+    pingTimeout: 60000,
     cors: {
         origin: "*",
-        methods: ['GET', 'POST', 'PUT', 'DELETE'],
-        credentials: true
+        // methods: ['GET', 'POST', 'PUT', 'DELETE'],
+        // credentials: true
     }
 })
 
