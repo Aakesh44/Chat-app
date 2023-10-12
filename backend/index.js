@@ -54,9 +54,11 @@ const PORT = process.env.PORT || 5000
 const server = app.listen(PORT,()=>{console.log(`your app is running on ${PORT}`)})
 
 
-const io = new Server(server, {
+const io = require("socket.io")(server, {
     pingTimeout: 60000,
-    origin:"https://chatly-rho.vercel.app"
+    cors: {
+        origin: "https://chatly-rho.vercel.app",
+    }
 })
 
 io.on("connection", (socket) => {
@@ -95,10 +97,9 @@ io.on("connection", (socket) => {
         })
     })
 
-    socket.on('disconnect', () => {
-        console.log('User disconnected');
-        // Perform any necessary cleanup or handling here
-    });
+    // socket.on('disconnect', () => {
+    //     console.log('User disconnected');
+    // });
 
 })
 
