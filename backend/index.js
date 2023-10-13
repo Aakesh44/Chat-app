@@ -59,8 +59,8 @@ const io = socketIo(server,{
     cors: {
         "Access-Control-Allow-Origin": "*",
         origin: "https://chatly-rho.vercel.app",
-        // methods: ['GET','POST'],
-        // credentials: true
+        methods: ['GET','POST'],
+        credentials: true
     }
 })
 
