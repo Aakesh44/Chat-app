@@ -2,9 +2,6 @@ const express = require('express')
 const app = express()
 const socketIo = require('socket.io')
 
-const httpServer = require('http').createServer(app)
-
-
 const mongoose = require('mongoose')
 const cors = require('cors')
 const dotenv = require('dotenv')
@@ -55,11 +52,15 @@ app.use(errorHandler.errorHandler)
 
 const PORT = process.env.PORT || 5000
 
-const io = require("socket.io")(httpServer,{
+const server = app.listen(PORT,()=>{console.log(`your app is running on ${PORT}`)})
+
+const io = socketIo(server,{
+    pingTimeout: 6000,
     cors: {
+        "Access-Control-Allow-Origin": "*",
         origin: "https://chatly-rho.vercel.app",
-        methods: ['GET','POST'],
-        credentials: true
+        // methods: ['GET','POST'],
+        // credentials: true
     }
 })
 
@@ -107,7 +108,6 @@ io.on("connection", (socket) => {
 })
 
 
-httpServer.listen(PORT,()=>{console.log(`your app is running on ${PORT}`)})
 
     // socket.off("setup", (userData)=>{
     //     console.log('user disconnected');
