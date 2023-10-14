@@ -220,11 +220,11 @@ const ChatRoom =() =>{
     useEffect(()=>{
         socket = io(ENDPOINT)
         socket.emit("setup", mainUser)
-        socket.on( "connect", () =>{setSocketConnected(true);console.log('socket connect')})
+        socket.on( "connected", () =>{setSocketConnected(true);console.log('socket connect')})
 
         console.log('leo das');
 
-        socket.on('typing' ,()=>(setIsTyping(true)))
+        socket.on('typing' ,()=>setIsTyping(true))
         socket.on('stop typing',()=>setIsTyping(false))
 
         return () =>{

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 
 import  {useSelector,useDispatch} from 'react-redux'
 
+import { setNotifications } from "../redux/features/notificationSlice"
 const NotiList = () => {
 
   const mainUser = useSelector(state=> state.mainUser.mainUser)
@@ -14,27 +15,42 @@ const NotiList = () => {
   
   console.log(notifications);
 
-  function genRoute(chat) {
+  const dup = new Set()
 
-    if(chat.isGroupChat){
-      return `/group-chat/${chat._id}`
+  const sortNotification = notifications.filter((noti,ind)=> {
+    if(!dup.has(noti.chat._id)){
+      dup.add(noti)
+      return true
+    }
+    return false
+  })
+
+  function genRoute(msg) {
+
+    if(msg.chat.isGroupChat){
+      console.log(msg.chat);
+      return `/group-chat/${msg.chat._id}`
     }
     else{
-      const userId = !(chat?.isGroupChat) && chat?.users?.find(n=> n._id !== mainUser?._id)?._id
-      return `/chat/${userId}`
+      console.log(msg.sender.name);
+
+      return `/chat/${msg.sender._id}`
     }
 
   }
-     function formatTime(timeString) {
-        const date = new Date(timeString);
-        const hours = date.getHours();
-        const minutes = date.getMinutes();
-        const ampm = hours >= 12 ? "PM" : "AM";
-        const formattedHours = hours % 12 || 12; // Convert 0 to 12 for 12-hour format
-        const formattedMinutes = minutes.toString().padStart(2, "0"); // Ensure two-digit minutes
-        
-        return `${formattedHours}:${formattedMinutes} ${ampm}`;
-    }
+
+
+  function formatTime(timeString) {
+    const date = new Date(timeString);
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const ampm = hours >= 12 ? "PM" : "AM";
+    const formattedHours = hours % 12 || 12; // Convert 0 to 12 for 12-hour format
+    const formattedMinutes = minutes.toString().padStart(2, "0"); // Ensure two-digit minutes
+
+    return `${formattedHours}:${formattedMinutes} ${ampm}`;
+  }
+
   return (
     <main style={{backgroundColor:'#F6F1F1'}} className=' w-full h-full pb-5 bg-red-300 rounded-lg overflow-hidden'>
         
@@ -48,7 +64,7 @@ const NotiList = () => {
 
       <section className='scrollbarhidden h-full pb-20  overflow-scroll w-full'>
 
-          {notifications?.map(noti=>(
+          {sortNotification?.map(noti=>(
             
             <Link to={genRoute(noti)} key={noti._id} style={{height:'70px'}} className='w-10/12 shadow-sm rounded-lg overflow-hidden mx-auto bg-white flex justify-between items-center cursor-pointer mb-2'>
                 <aside className='w-10/12 p-1 flex items-center'>
