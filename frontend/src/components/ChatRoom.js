@@ -17,7 +17,7 @@ import { BeatLoader } from "react-spinners"
 
 import {io} from "socket.io-client"
 
-const ENDPOINT = "https://chatly-server.vercel.app"
+const ENDPOINT = "https://chat-server-qvkq.onrender.com"
 
 let socket 
 let selectedChatCompare = null
@@ -62,7 +62,7 @@ const ChatRoom =() =>{
             };
 
             const response = await axios.put(
-                "https://chatly-server.vercel.app/user/add-friend",
+                "https://chat-server-qvkq.onrender.com/user/add-friend",
                 {
                     userId:userId,
                     mainId:mainUser?._id
@@ -96,7 +96,7 @@ const ChatRoom =() =>{
                 }
             }
             const response = await axios.post(
-                `https://chatly-server.vercel.app/chat/get-create-chat`,
+                `https://chat-server-qvkq.onrender.com/chat/get-create-chat`,
                 {
                     userId:userId,
                     mainId:mainUser?._id
@@ -127,7 +127,7 @@ const ChatRoom =() =>{
                 }
             }
             const response = await axios.get(
-                `https://chatly-server.vercel.app/chat/getGroup/${userId}`,
+                `https://chat-server-qvkq.onrender.com/chat/getGroup/${userId}`,
                 config
             )
         
@@ -161,7 +161,7 @@ const ChatRoom =() =>{
                 }
             }
             const response = await axios.post(
-                `https://chatly-server.vercel.app/message/send`,
+                `https://chat-server-qvkq.onrender.com/message/send`,
                 {
                     message:typedMsg, 
                     chatId:curChat?._id,
@@ -197,7 +197,7 @@ const ChatRoom =() =>{
             }
             // console.log(curChat?._id);
             const response = await axios.get(
-                `https://chatly-server.vercel.app/message/fetch/${chatId}`,
+                `https://chat-server-qvkq.onrender.com/message/fetch/${chatId}`,
 
                 config
             )

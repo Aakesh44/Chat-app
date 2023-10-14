@@ -12,7 +12,7 @@ const loginFun = createAsyncThunk('auth/login',async (userdata,{rejectWithValue}
 
     try{
 
-        const response =  await axios.post("https://chatly-server.vercel.app/user/log-in",userdata)
+        const response =  await axios.post("https://chat-server-qvkq.onrender.com/user/log-in",userdata)
 
         console.log(response.data);
         if(response.data){
@@ -34,7 +34,7 @@ const signinFun = createAsyncThunk('auth/signin',async (userdata,{rejectWithValu
 
     try{
 
-        const response =  await axios.post("https://chatly-server.vercel.app/user/sign-in",userdata)
+        const response =  await axios.post("https://chat-server-qvkq.onrender.com/user/sign-in",userdata)
 
         console.log(response.data);
         if(response.data){

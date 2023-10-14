@@ -15,7 +15,7 @@ const getMainUser = createAsyncThunk('user/getUser', async (userId,{rejectWithVa
     const TOKEN = JSON.parse(localStorage.getItem('chatUser') ?? '')?.token
     // console.log(TOKEN);
     try {
-        const response = await axios.get(`https://chatly-server.vercel.app/user/getuser/${userId}`,{
+        const response = await axios.get(`https://chat-server-qvkq.onrender.com/user/getuser/${userId}`,{
             headers:{
             Authorization: `Bearer ${TOKEN}`
         }
