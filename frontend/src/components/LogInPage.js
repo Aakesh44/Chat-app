@@ -6,7 +6,6 @@ import * as yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
 import {useForm} from 'react-hook-form'
 
-import axios from 'axios'
 
 import {loginFun,signinFun} from '../redux/features/authSlice'
 import { useDispatch,useSelector } from 'react-redux'

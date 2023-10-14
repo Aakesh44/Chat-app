@@ -19,9 +19,9 @@ const Section1 = ({option}) => {
 
           option === 'chatlist' ? <ChatList/>:
 
-          option === 'userlist' ? <UserList/>:<></>
+          option === 'userlist' ? <UserList/>:
 
-          // option === 'notilist' && <NotiList/>
+          option === 'notilist' && <NotiList/>
         }
         
         {popUp===true && <CreateGroup/>}
