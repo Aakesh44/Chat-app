@@ -29,7 +29,7 @@ const SideBar = ({setOption,option}) => {
           <img src={userslogo}    alt="" className=' w-1/2 aspect-square '/>
         </span>
 
-        <div style={{backgroundColor:option === "notilist" && "rgb(165 243 252)"}} onClick={()=>setOption('notilist')} className=' hidden flexx  w-1/2  aspect-square  rounded-md items-center justify-center cursor-pointer'>
+        <div style={{backgroundColor:option === "notilist" && "rgb(165 243 252)"}} onClick={()=>setOption('notilist')} className=' flex  w-1/2  aspect-square  rounded-md items-center justify-center cursor-pointer'>
           <span className=' relative flex items-center justify-center h-full w-full'>
             <img src={belllogo}    alt="" className=' w-1/2 aspect-square '/>
             <span className=' absolute -top-1 -right-1 h-4 w-4 text-white flex items-center justify-center bg-red-500 text-xs rounded-full'> {notifications?.length} </span>
